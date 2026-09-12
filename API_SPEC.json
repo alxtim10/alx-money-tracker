@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Apps Script Webhook API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://script.google.com/macros/s/{DEPLOYMENT_ID}/exec"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "Append new transaction to Google Sheets",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string", "example": "uuid-v4-string" },
+                  "timestamp": { "type": "integer", "example": 1694528400000 },
+                  "type": { "type": "string", "enum": ["EXPENSE", "INCOME", "TRANSFER"] },
+                  "amount": { "type": "integer", "example": 50000 },
+                  "source_wallet": { "type": "string", "example": "BCA" },
+                  "dest_wallet": { "type": "string", "example": "GoPay", "nullable": true },
+                  "category": { "type": "string", "example": "Makan" },
+                  "note": { "type": "string", "example": "Sate ayam" }
+                },
+                "required": ["id", "timestamp", "type", "amount", "source_wallet", "category"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "success" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
