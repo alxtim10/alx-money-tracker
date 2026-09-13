@@ -1,0 +1,498 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Define domain models and `TransactionType` enum": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576632
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226593368
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226799564
+      }
+    ],
+    "1.2 Implement `AmountReducer` pure helper": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576694
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226808233
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226944901
+      }
+    ],
+    "1.3 Write property tests for `AmountReducer`": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576832
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226954418
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227152434
+      }
+    ],
+    "1.4 Write unit tests for `AmountReducer` edge cases": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576860
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226955103
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227153551
+      }
+    ],
+    "2.1 Define Room entities": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576890
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226594376
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226800224
+      }
+    ],
+    "2.2 Implement DAOs and the atomic `@Transaction` method": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576916
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226809330
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227151517
+      }
+    ],
+    "2.3 Create Room `AppDatabase` and mappers": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576942
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227162710
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227337407
+      }
+    ],
+    "2.4 Write Room in-memory integration tests for atomicity and Flow": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576966
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227338226
+      },
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227685204
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294641047
+      }
+    ],
+    "3. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226576992
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294620612
+      }
+    ],
+    "4.1 Implement `TransactionRepository` interface and Room-backed implementation": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577019
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294655924
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294775821
+      }
+    ],
+    "4.2 Write property tests for balance-delta logic (Room in-memory / fake DAO)": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577051
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294786717
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295009598
+      }
+    ],
+    "4.3 Write unit test for repository error mapping": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577082
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294785853
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295008982
+      }
+    ],
+    "5.1 Define `TransactionInputUiState` and `TransactionInputEvent`": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577114
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294654787
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294776764
+      }
+    ],
+    "5.2 Implement `SubmitValidator` and selection/filter helpers": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577178
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789294784653
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295007109
+      }
+    ],
+    "5.3 Write property test for submit gating": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577210
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295017629
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295320088
+      }
+    ],
+    "5.4 Write property tests for category/wallet/selection logic": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577239
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295018793
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295319260
+      }
+    ],
+    "6.1 Implement `TransactionInputViewModel`": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577272
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295019998
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295317994
+      }
+    ],
+    "6.2 Implement submit orchestration and post-save reset": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577298
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295328263
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295588543
+      }
+    ],
+    "6.3 Write property tests for transaction construction and reset": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577325
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295598662
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295871614
+      }
+    ],
+    "6.4 Write unit tests for ViewModel state defaults": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577350
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295597557
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295870143
+      }
+    ],
+    "7. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577382
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295886991
+      }
+    ],
+    "8.1 Implement child composables": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577411
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295327286
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295589276
+      }
+    ],
+    "8.2 Implement `TransactionInputScreen` with lower-region layout": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577446
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295596448
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295872427
+      }
+    ],
+    "8.3 Write Compose UI tests": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577475
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295897438
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296431772
+      }
+    ],
+    "9.1 Assemble screen, ViewModel, repository, and database": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577507
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295896245
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296059042
+      }
+    ],
+    "9.2 Write integration test for the end-to-end save path": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577556
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296432575
+      }
+    ],
+    "10. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789226577592
+      },
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296493811
+      }
+    ],
+    "1. Establish domain models, enums, and pure logic scaffolding": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227153583
+      }
+    ],
+    "2. Implement Room data layer (entities + database)": [
+      {
+        "executionId": "7d5a0a48-c282-4d2a-9bcf-c00a9646a0a7",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789227685246
+      }
+    ],
+    "4. Implement the repository": [
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295009674
+      }
+    ],
+    "5. Implement UI state, validation, and selection logic": [
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295320166
+      }
+    ],
+    "6. Implement the ViewModel": [
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789295871725
+      }
+    ],
+    "8. Implement Compose UI (stateless, one-handed layout)": [
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296431838
+      }
+    ],
+    "9. Wire the feature together": [
+      {
+        "executionId": "3c59dbf8-7da8-477f-8533-d5746e2bfd00",
+        "chatSessionId": "sess_a11cb131-e0ff-4a4c-ba39-d9d40d66f342",
+        "timestamp": 1789296432606
+      }
+    ]
+  }
+}
