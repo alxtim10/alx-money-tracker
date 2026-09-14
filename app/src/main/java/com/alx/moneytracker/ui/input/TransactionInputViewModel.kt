@@ -10,6 +10,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -52,6 +53,9 @@ class TransactionInputViewModel(
             .onEach { wallets ->
                 _uiState.update { it.copy(wallets = SelectionFilters.selectableSourceWallets(wallets)) }
             }
+            // A DB observation error (e.g. the database being torn down) must not crash the
+            // app; stop updating this slice of state instead of propagating uncaught.
+            .catch { }
             .launchIn(viewModelScope)
 
         // Default wallet: auto-select as the source only while the user hasn't chosen one
@@ -64,11 +68,17 @@ class TransactionInputViewModel(
                     }
                 }
             }
+            // A DB observation error (e.g. the database being torn down) must not crash the
+            // app; stop updating this slice of state instead of propagating uncaught.
+            .catch { }
             .launchIn(viewModelScope)
 
         // Quick presets.
         repository.observeQuickPresets()
             .onEach { presets -> _uiState.update { it.copy(presets = presets) } }
+            // A DB observation error (e.g. the database being torn down) must not crash the
+            // app; stop updating this slice of state instead of propagating uncaught.
+            .catch { }
             .launchIn(viewModelScope)
 
         // Categories: re-subscribe whenever the selected type changes. The repository already
@@ -81,6 +91,9 @@ class TransactionInputViewModel(
                     state.copy(categories = SelectionFilters.categoriesForType(categories, state.selectedType))
                 }
             }
+            // A DB observation error (e.g. the database being torn down) must not crash the
+            // app; stop updating this slice of state instead of propagating uncaught.
+            .catch { }
             .launchIn(viewModelScope)
     }
 

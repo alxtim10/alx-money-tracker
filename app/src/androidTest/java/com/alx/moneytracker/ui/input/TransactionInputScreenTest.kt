@@ -8,6 +8,7 @@ import androidx.compose.ui.test.getUnclippedBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alx.moneytracker.domain.Category
@@ -204,7 +205,9 @@ class TransactionInputScreenTest {
     fun noteField_isDisplayed_andAcceptsTextInputOnFocus() {
         val events = setScreen(baseState())
 
-        composeRule.onNodeWithTag("note_field").assertIsDisplayed()
+        // The note field is in the scrollable upper region and may be below the fold on smaller
+        // screens; scroll it into view before asserting it is displayed.
+        composeRule.onNodeWithTag("note_field").performScrollTo().assertIsDisplayed()
 
         // A text field requests the OS keyboard only on focus; performClick focuses it, then it
         // accepts free text. The dispatched NoteChanged event is the practical proxy for "keyboard
