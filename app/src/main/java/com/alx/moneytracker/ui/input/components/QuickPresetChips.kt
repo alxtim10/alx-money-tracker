@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,8 +17,9 @@ import androidx.compose.ui.unit.dp
 import com.alx.moneytracker.domain.QuickPreset
 
 /**
- * Renders the configured [presets] as a wrapping row of chips. Each tap emits the tapped preset's
- * amount via [onPresetTap] so the caller can accumulate it into the running amount (Requirement 2.1).
+ * Renders the configured [presets] as a wrapping row of soft, fully-rounded chips. Each tap emits
+ * the tapped preset's amount via [onPresetTap] so the caller can accumulate it into the running
+ * amount (Requirement 2.1).
  *
  * Stateless: holds no selection; presets are additive so there is nothing to highlight.
  */
@@ -29,14 +33,20 @@ fun QuickPresetChips(
     FlowRow(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 4.dp)
             .testTag("quick_preset_chips"),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         presets.forEach { preset ->
             AssistChip(
                 onClick = { onPresetTap(preset.amount) },
-                label = { Text(preset.label) },
+                label = { Text(preset.label, style = MaterialTheme.typography.labelLarge) },
+                shape = RoundedCornerShape(50),
+                colors = AssistChipDefaults.assistChipColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    labelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
+                border = null,
                 modifier = Modifier.testTag("preset_chip_${preset.id}")
             )
         }

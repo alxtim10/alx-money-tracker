@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material3.MaterialTheme
+import com.alx.moneytracker.ui.theme.AppTheme
 import com.alx.moneytracker.data.local.DatabaseProvider
 import com.alx.moneytracker.data.repository.RoomTransactionRepository
 import com.alx.moneytracker.ui.input.TransactionInputScreen
@@ -21,8 +21,8 @@ import com.alx.moneytracker.ui.input.TransactionInputViewModelFactory
  * configuration changes. The stateful [TransactionInputScreen] overload binds directly to the
  * ViewModel's `uiState` and routes UI actions back to `onEvent`.
  *
- * Theming uses Compose's [MaterialTheme] rather than an XML theme, so no `res/values` theme files
- * are required.
+ * Theming uses the Compose [AppTheme] (Cornflower Blue `#6495ED` accent) rather than an XML theme,
+ * so no `res/values` theme files are required.
  */
 class MainActivity : ComponentActivity() {
 
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
+            AppTheme {
                 TransactionInputScreen(viewModel = viewModel)
             }
         }

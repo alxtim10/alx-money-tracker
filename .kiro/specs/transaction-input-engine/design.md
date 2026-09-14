@@ -125,11 +125,51 @@ Child composables (all stateless, driven by state + lambdas):
 - `QuickPresetChips(presets, onPresetTap)` — renders configured `Preset_Chip` set; each tap emits its value (Requirement 2).
 - `TransactionTypeSelector(selectedType, onTypeSelected)` — single-choice among EXPENSE/INCOME/TRANSFER (Requirement 3).
 - `WalletSelector(wallets, sourceWalletId, destWalletId, type, onSourceSelected, onDestSelected)` — source always shown; destination shown only for TRANSFER (Requirement 4).
-- `CategorySelector(categories, selectedCategoryId, onCategorySelected)` — shows categories filtered to the current type (Requirement 5).
+- `CategorySelector(categories, selectedCategoryId, onCategorySelected)` — an exposed dropdown menu whose read-only anchor shows the selected category (or a placeholder); opening it lists the categories filtered to the current type, and choosing one emits the selection (Requirement 5).
 - `NoteField(note, onNoteChanged)` — a text field that shows the OS keyboard only when tapped/focused (Requirement 6).
 - `SubmitButton(enabled, onSubmit)` — enabled purely from `state.isSubmitEnabled` (Requirement 7); positioned in the lower region (Requirement 8).
 
 The UI holds no logic beyond formatting and event dispatch. All decisions (accumulation, filtering, validation) come from the ViewModel state.
+
+### UI/UX Design Guidelines (Modern "Gemini" Aesthetic)
+
+These guidelines govern the visual and interaction design of the Compose UI. They apply to this feature's screen now and to future scopes (e.g. history) as they are built. Where a directive targets a component that is out of this feature's scope, it is recorded here for later and marked accordingly.
+
+**Core philosophy**
+
+- **Airy & clean** — generous whitespace and padding; never a cramped layout.
+- **Fluid & organic** — no sharp corners; every surface is rounded.
+- **Subtle elevation** — avoid heavy drop shadows. Separate elements with tonal-surface differences or hairline borders (1dp at very low opacity) rather than shadow.
+- **Focus & glow** — use a vibrant/gradient accent very selectively, only on the most important elements (the Save button and the nominal amount).
+
+**Design tokens**
+
+- *Typography:* a clean, rounded sans-serif (Google Sans / Inter / Plus Jakarta Sans; default `sans-serif` acceptable until a font asset is added).
+  - Nominal display: 40-48sp, `FontWeight.SemiBold`, slightly loosened letter spacing.
+  - Body / note: 14-16sp, Regular/Medium, secondary (muted grey) color so it does not dominate.
+  - Chip / button labels: 14sp, `FontWeight.Medium`.
+- *Color palette (light / dark ready):* muted/pastel tones with one vibrant accent; avoid pure primary red/blue.
+  - Background: `#F8F9FA` (light) / `#0F0F13` (dark).
+  - Surface / cards: `#FFFFFF` (light) / `#1C1C22` (dark).
+  - Accent / brand: a soft AI-inspired gradient (blue-violet `#4A90E2` -> `#9013FE`) reserved for the primary button; the flat accent seed is Cornflower Blue `#6495ED`.
+  - Muted / secondary: `#8E8E93` for empty labels, icons, and hairline borders.
+- *Shapes & geometry:*
+  - Cards & bottom sheets: `RoundedCornerShape(24.dp)` or `32.dp` (larger elements -> rounder).
+  - Chips & quick presets: pure pill — `CircleShape` or `RoundedCornerShape(percent = 50)`.
+  - Numpad buttons: soft rounded `RoundedCornerShape(16.dp)`, or no background (numeral only) with a circular ripple on press.
+
+**Component directives**
+
+- *Numpad (core interaction):* digit keys have no border — the numeral stands over the background surface. Emit **haptic feedback** on every key press (`HapticFeedbackType.TextHandleMove` / `LongPress`). The DEL/Clear key uses a distinct but muted accent (soft red/orange background with red text).
+- *Nominal display (top section):* the hero element — centered near the top, largest text. Its color is dynamic: primary text color while typing, reverting to muted grey when empty.
+- *History list (future scope, not in this feature):* clean row layout with no per-item card wrapper (avoid visual noise); separate rows with spacing or a 0.5dp divider at `~0.2` alpha. Sync indicator is a minimal icon with no text label (blinking dot / small hourglass for pending, a transparent check for synced).
+
+**Animation & motion**
+
+- Apply `animateContentSize()` to elements that change size (e.g. the destination wallet row appearing for TRANSFER).
+- Use spring-based transitions (`dampingRatio = Spring.DampingRatioMediumBouncy`, `stiffness = Spring.StiffnessLow`) so menus/sheets feel alive rather than rigid.
+
+**Scope note:** the History list and Sync indicator directives above belong to a later scope (no history screen exists in the Transaction Input Engine); they are captured here so the aesthetic stays consistent when that scope is built. The nominal display, numpad, chips, selectors, note field, and Save button directives apply to this feature and drive the composable styling described above.
 
 ### ViewModel
 

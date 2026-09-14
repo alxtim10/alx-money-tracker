@@ -3,10 +3,12 @@ package com.alx.moneytracker.ui.input
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
@@ -188,15 +190,31 @@ class TransactionInputScreenTest {
             .assertIsSelected()
     }
 
-    // --- 5.4: selected category renders active -------------------------------------------------
+    // --- 5.4: selected category shown in the dropdown anchor -----------------------------------
 
     @Test
-    fun selectedCategory_rendersAsActive() {
+    fun selectedCategory_isShownInDropdownAnchor() {
+        // The category picker is an exposed dropdown; the selected category's name is shown in the
+        // read-only anchor field (tagged "category_selector").
         setScreen(baseState(selectedCategoryId = transportCategory.id))
 
-        composeRule.onNodeWithTag("category_${transportCategory.id}")
+        composeRule.onNodeWithTag("category_selector")
             .assertIsDisplayed()
-            .assertIsSelected()
+            .assertTextContains(transportCategory.name)
+    }
+
+    @Test
+    fun categoryDropdown_opens_andSelectingItemDispatchesEvent() {
+        val events = setScreen(baseState())
+
+        // Open the dropdown by tapping the anchor, then pick a category from the menu.
+        composeRule.onNodeWithTag("category_selector").performClick()
+        composeRule.onNodeWithTag("category_${foodCategory.id}").assertIsDisplayed().performClick()
+
+        assertTrue(
+            "Selecting a category item should dispatch CategorySelected with its id",
+            events.contains(TransactionInputEvent.CategorySelected(foodCategory.id))
+        )
     }
 
     // --- 6.1 / 6.2 / 6.3: note field shown and accepts free text on focus ----------------------

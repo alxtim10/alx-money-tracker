@@ -1,12 +1,17 @@
 package com.alx.moneytracker.ui.input.components
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +28,7 @@ import com.alx.moneytracker.domain.Wallet
  * - The destination selector is shown only when [type] is TRANSFER, and excludes the currently
  *   selected source wallet so a wallet cannot transfer to itself (Requirement 4.3).
  *
+ * Modern styling: soft, fully-rounded chips with the accent container when selected.
  * Stateless: active chips are driven by [sourceWalletId] / [destWalletId]; taps emit
  * [onSourceSelected] / [onDestSelected].
  */
@@ -41,11 +47,21 @@ fun WalletSelector(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
             .testTag("wallet_selector"),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
-        Text(text = "From", style = MaterialTheme.typography.labelMedium)
+        Text(
+            text = "From",
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
         WalletChipRow(
             wallets = activeWallets,
             selectedWalletId = sourceWalletId,
@@ -54,7 +70,11 @@ fun WalletSelector(
         )
 
         if (type == TransactionType.TRANSFER) {
-            Text(text = "To", style = MaterialTheme.typography.labelMedium)
+            Text(
+                text = "To",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
             WalletChipRow(
                 wallets = activeWallets.filter { it.id != sourceWalletId },
                 selectedWalletId = destWalletId,
@@ -80,10 +100,22 @@ private fun WalletChipRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         wallets.forEach { wallet ->
+            val selected = wallet.id == selectedWalletId
             FilterChip(
-                selected = wallet.id == selectedWalletId,
+                selected = selected,
                 onClick = { onSelected(wallet.id) },
-                label = { Text(wallet.name) },
+                label = { Text(wallet.name, style = MaterialTheme.typography.labelLarge) },
+                shape = RoundedCornerShape(50),
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
+                border = FilterChipDefaults.filterChipBorder(
+                    enabled = true,
+                    selected = selected,
+                    borderColor = MaterialTheme.colorScheme.outlineVariant,
+                    selectedBorderColor = MaterialTheme.colorScheme.primary
+                ),
                 modifier = Modifier.testTag("${tagPrefix}_${wallet.id}")
             )
         }

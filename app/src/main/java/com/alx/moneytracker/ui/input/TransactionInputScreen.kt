@@ -6,10 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -34,10 +39,11 @@ import com.alx.moneytracker.ui.input.components.WalletSelector
  * Renders the child composables from [TransactionInputUiState] and forwards every interaction as a
  * [TransactionInputEvent] via [onEvent].
  *
- * Layout follows AGENTS.md UI Rule 2 (one-handed ergonomics, Requirement 8): the primary
- * interaction cluster — quick-preset chips, the [CustomNumpad], and the [SubmitButton] — is anchored
- * in the LOWER region of the screen for comfortable thumb reach, while the amount display and the
- * various selectors live in an upper, scrollable region.
+ * Modern layout (clean + soft): a faint blue-grey background with the amount hero and grouped
+ * metadata presented in rounded white cards in the scrollable upper region, and the primary
+ * interaction cluster — quick-preset chips, the [CustomNumpad], and the [SubmitButton] — anchored
+ * in a raised, top-rounded surface in the LOWER region for one-handed thumb reach (Requirement 8,
+ * AGENTS.md UI Rule 2). The numpad is compact so the note stays reachable without scrolling.
  *
  * Errors are surfaced through a [SnackbarHost]: whenever [TransactionInputUiState.errorMessage]
  * becomes non-null it is shown once, then [TransactionInputEvent.ErrorConsumed] is dispatched so the
@@ -62,6 +68,7 @@ fun TransactionInputScreen(
 
     Scaffold(
         modifier = modifier.testTag("transaction_input_screen"),
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
         Column(
@@ -69,66 +76,99 @@ fun TransactionInputScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            // Upper region: amount + entry metadata. Scrollable and weighted so it yields space to
-            // the lower interaction cluster (which is pushed to the bottom for thumb reach).
+            // Upper region: amount hero + entry metadata, in soft rounded cards. Scrollable and
+            // weighted so it yields space to the lower interaction cluster.
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
-                    .testTag("upper_region")
+                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                    .testTag("upper_region"),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                AmountDisplay(runningAmount = state.runningAmount)
+                SectionCard {
+                    AmountDisplay(runningAmount = state.runningAmount)
+                }
 
-                TransactionTypeSelector(
-                    selectedType = state.selectedType,
-                    onTypeSelected = { onEvent(TransactionInputEvent.TypeSelected(it)) }
-                )
+                SectionCard {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        TransactionTypeSelector(
+                            selectedType = state.selectedType,
+                            onTypeSelected = { onEvent(TransactionInputEvent.TypeSelected(it)) }
+                        )
 
-                WalletSelector(
-                    wallets = state.wallets,
-                    sourceWalletId = state.sourceWalletId,
-                    destWalletId = state.destWalletId,
-                    type = state.selectedType,
-                    onSourceSelected = { onEvent(TransactionInputEvent.SourceWalletSelected(it)) },
-                    onDestSelected = { onEvent(TransactionInputEvent.DestWalletSelected(it)) }
-                )
+                        WalletSelector(
+                            wallets = state.wallets,
+                            sourceWalletId = state.sourceWalletId,
+                            destWalletId = state.destWalletId,
+                            type = state.selectedType,
+                            onSourceSelected = { onEvent(TransactionInputEvent.SourceWalletSelected(it)) },
+                            onDestSelected = { onEvent(TransactionInputEvent.DestWalletSelected(it)) }
+                        )
 
-                CategorySelector(
-                    categories = state.categories,
-                    selectedCategoryId = state.selectedCategoryId,
-                    onCategorySelected = { onEvent(TransactionInputEvent.CategorySelected(it)) }
-                )
+                        CategorySelector(
+                            categories = state.categories,
+                            selectedCategoryId = state.selectedCategoryId,
+                            onCategorySelected = { onEvent(TransactionInputEvent.CategorySelected(it)) }
+                        )
 
-                NoteField(
-                    note = state.note,
-                    onNoteChanged = { onEvent(TransactionInputEvent.NoteChanged(it)) }
-                )
+                        NoteField(
+                            note = state.note,
+                            onNoteChanged = { onEvent(TransactionInputEvent.NoteChanged(it)) }
+                        )
+                    }
+                }
             }
 
-            // Lower region: the one-handed interaction cluster (Requirement 8, AGENTS UI Rule 2).
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("lower_region"),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+            // Lower region: raised, top-rounded interaction cluster (Requirement 8, UI Rule 2).
+            Surface(
+                color = MaterialTheme.colorScheme.surface,
+                shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
+                tonalElevation = 3.dp,
+                shadowElevation = 8.dp,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                QuickPresetChips(
-                    presets = state.presets,
-                    onPresetTap = { onEvent(TransactionInputEvent.PresetTapped(it)) }
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp, bottom = 8.dp)
+                        .testTag("lower_region"),
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    QuickPresetChips(
+                        presets = state.presets,
+                        onPresetTap = { onEvent(TransactionInputEvent.PresetTapped(it)) }
+                    )
 
-                CustomNumpad(
-                    onDigit = { onEvent(TransactionInputEvent.DigitPressed(it)) },
-                    onDelete = { onEvent(TransactionInputEvent.DeletePressed) }
-                )
+                    CustomNumpad(
+                        onDigit = { onEvent(TransactionInputEvent.DigitPressed(it)) },
+                        onDelete = { onEvent(TransactionInputEvent.DeletePressed) }
+                    )
 
-                SubmitButton(
-                    enabled = state.isSubmitEnabled,
-                    onSubmit = { onEvent(TransactionInputEvent.Submit) }
-                )
+                    SubmitButton(
+                        enabled = state.isSubmitEnabled,
+                        onSubmit = { onEvent(TransactionInputEvent.Submit) }
+                    )
+                }
             }
         }
+    }
+}
+
+/** A soft, rounded white card used to group a section of the upper region. */
+@Composable
+private fun SectionCard(content: @Composable () -> Unit) {
+    Card(
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        content()
     }
 }
 
