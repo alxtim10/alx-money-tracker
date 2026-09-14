@@ -116,12 +116,12 @@ Key point: the balance update and the log insert live in the **same** `@Transact
 
 ### UI Layer (Jetpack Compose)
 
-`TransactionInputScreen(state, onEvent)` — stateless composable that renders the current `TransactionInputUiState` and forwards user actions as events. Layout places the read-only amount display near the top/middle and the interaction cluster (type selector, chips, numpad, submit) in the lower region (Requirement 8).
+`TransactionInputScreen(state, onEvent)` — stateless composable that renders the current `TransactionInputUiState` and forwards user actions as events. Layout places the read-only amount display near the top/middle and the interaction cluster (type selector, chips, numpad, submit) in the lower region (Requirement 8). The numpad is sized compactly (flatter keys, tightened spacing) so that on typical phone screens the upper metadata region — including the optional `NoteField` — fits without needing to scroll to reach the note; the upper region remains scrollable as a fallback for very short screens.
 
 Child composables (all stateless, driven by state + lambdas):
 
 - `AmountDisplay(runningAmount)` — renders `Running_Amount` formatted as integer smallest-unit currency; **not focusable**, so no OS keyboard (Requirements 1, 5-of-R1).
-- `CustomNumpad(onDigit, onDelete)` — digit keys 0-9 and a delete key (Requirements 1.2, 1.3, 1.4).
+- `CustomNumpad(onDigit, onDelete)` — digit keys 0-9 and a delete key (Requirements 1.2, 1.3, 1.4). Keys use a flatter aspect ratio and tightened row/padding spacing to keep the keypad short, so the note field stays reachable without scrolling while touch targets remain comfortably tappable.
 - `QuickPresetChips(presets, onPresetTap)` — renders configured `Preset_Chip` set; each tap emits its value (Requirement 2).
 - `TransactionTypeSelector(selectedType, onTypeSelected)` — single-choice among EXPENSE/INCOME/TRANSFER (Requirement 3).
 - `WalletSelector(wallets, sourceWalletId, destWalletId, type, onSourceSelected, onDestSelected)` — source always shown; destination shown only for TRANSFER (Requirement 4).

@@ -42,9 +42,9 @@ fun CustomNumpad(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(horizontal = 8.dp, vertical = 4.dp)
             .testTag("numpad"),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         NumpadRow {
             DigitKey(1, onDigit)
@@ -68,7 +68,7 @@ fun CustomNumpad(
                 onClick = onDelete,
                 modifier = Modifier
                     .weight(1f)
-                    .aspectRatio(1.6f)
+                    .aspectRatio(2.4f)
                     .semantics { contentDescription = "Delete last digit" }
                     .testTag("numpad_delete")
             ) {
@@ -82,7 +82,7 @@ fun CustomNumpad(
 private fun NumpadRow(content: @Composable RowScope.() -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
         content = content
     )
 }
@@ -93,7 +93,7 @@ private fun RowScope.DigitKey(digit: Int, onDigit: (Int) -> Unit) {
         onClick = { onDigit(digit) },
         modifier = Modifier
             .weight(1f)
-            .aspectRatio(1.6f)
+            .aspectRatio(2.4f)
             .testTag("numpad_key_$digit")
     ) {
         Text(text = digit.toString(), style = MaterialTheme.typography.headlineSmall)
@@ -105,6 +105,6 @@ private fun RowScope.KeySpacer() {
     Spacer(
         modifier = Modifier
             .weight(1f)
-            .aspectRatio(1.6f)
+            .aspectRatio(2.4f)
     )
 }
