@@ -179,13 +179,33 @@ private class InMemoryTransactionDao(
 private object StubWalletDao : WalletDao {
     override fun observeActiveWallets(): Flow<List<WalletEntity>> = flowOf(emptyList())
     override fun observeDefaultWallet(): Flow<WalletEntity?> = flowOf(null)
+
+    // Scope 3 metadata write/override/archive/default methods are not exercised here.
+    override suspend fun insert(wallet: WalletEntity): Long = throw NotImplementedError()
+    override suspend fun updateName(id: Long, name: String) = throw NotImplementedError()
+    override suspend fun overrideBalance(id: Long, balance: Long) = throw NotImplementedError()
+    override suspend fun markArchived(id: Long) = throw NotImplementedError()
+    override suspend fun activeCount(): Int = throw NotImplementedError()
+    override suspend fun findById(id: Long): WalletEntity? = throw NotImplementedError()
+    override suspend fun clearAllDefaults() = throw NotImplementedError()
+    override suspend fun setDefault(id: Long) = throw NotImplementedError()
 }
 
 private object StubCategoryDao : CategoryDao {
     override fun observeByType(type: String): Flow<List<CategoryEntity>> = flowOf(emptyList())
     override fun observeAllActive(): Flow<List<CategoryEntity>> = flowOf(emptyList())
+
+    override suspend fun insert(category: CategoryEntity): Long = throw NotImplementedError()
+    override suspend fun update(category: CategoryEntity) = throw NotImplementedError()
+    override suspend fun findById(id: Long): CategoryEntity? = throw NotImplementedError()
+    override suspend fun markArchived(id: Long) = throw NotImplementedError()
 }
 
 private object StubQuickPresetDao : QuickPresetDao {
     override fun observeAll(): Flow<List<QuickPresetEntity>> = flowOf(emptyList())
+
+    override suspend fun insert(preset: QuickPresetEntity): Long = throw NotImplementedError()
+    override suspend fun update(preset: QuickPresetEntity) = throw NotImplementedError()
+    override suspend fun deleteById(id: Long) = throw NotImplementedError()
+    override suspend fun findById(id: Long): QuickPresetEntity? = throw NotImplementedError()
 }
