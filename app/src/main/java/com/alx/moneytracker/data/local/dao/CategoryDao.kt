@@ -20,4 +20,11 @@ interface CategoryDao {
      */
     @Query("SELECT * FROM categories WHERE type = :type AND is_archived = 0")
     fun observeByType(type: String): Flow<List<CategoryEntity>>
+
+    /**
+     * Emits all non-archived categories across every transaction type as a reactive [Flow],
+     * used to build the Scope 2 History category filter chips (Requirement 5.1).
+     */
+    @Query("SELECT * FROM categories WHERE is_archived = 0")
+    fun observeAllActive(): Flow<List<CategoryEntity>>
 }

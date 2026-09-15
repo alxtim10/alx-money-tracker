@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.alx.moneytracker.data.local.entity.TransactionEntity
+import kotlinx.coroutines.flow.Flow
 
 /**
  * DAO for the `transactions` table plus the atomic insert-log + apply-balance operation.
@@ -19,6 +20,16 @@ interface TransactionDao {
     /** Inserts a single transaction log row. */
     @Insert
     suspend fun insert(tx: TransactionEntity)
+
+    /**
+     * Emits every transaction as a reactive [Flow], re-emitting on any change to the
+     * `transactions` table (AGENTS.md Data Rule 2, Requirement 2.1).
+     *
+     * No ordering or filtering is applied in SQL — Scope 2's History_Module performs filtering,
+     * sorting, and aggregation as pure in-memory transforms over this full stream.
+     */
+    @Query("SELECT * FROM transactions")
+    fun observeAll(): Flow<List<TransactionEntity>>
 
     /**
      * Applies a signed [delta] to the balance of the wallet identified by [walletId].

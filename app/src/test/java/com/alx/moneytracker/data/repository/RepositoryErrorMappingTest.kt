@@ -87,6 +87,8 @@ class RepositoryErrorMappingTest : StringSpec({
 private class ErrMapThrowingTransactionDao(private val error: Throwable) : TransactionDao {
     override suspend fun insert(tx: TransactionEntity) = throw error
 
+    override fun observeAll(): Flow<List<TransactionEntity>> = flowOf(emptyList())
+
     override suspend fun applyBalanceDelta(walletId: Long, delta: Long) = throw error
 
     override suspend fun insertAndApplyBalances(
@@ -108,6 +110,8 @@ private class ErrMapRecordingTransactionDao : TransactionDao {
     override suspend fun insert(tx: TransactionEntity) {
         /* no-op */
     }
+
+    override fun observeAll(): Flow<List<TransactionEntity>> = flowOf(emptyList())
 
     override suspend fun applyBalanceDelta(walletId: Long, delta: Long) {
         /* no-op */
@@ -132,6 +136,7 @@ private object ErrMapWalletDao : WalletDao {
 
 private object ErrMapCategoryDao : CategoryDao {
     override fun observeByType(type: String): Flow<List<CategoryEntity>> = flowOf(emptyList())
+    override fun observeAllActive(): Flow<List<CategoryEntity>> = flowOf(emptyList())
 }
 
 private object ErrMapQuickPresetDao : QuickPresetDao {

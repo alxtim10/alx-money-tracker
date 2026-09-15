@@ -164,6 +164,8 @@ private class InMemoryTransactionDao(
         inserted.add(tx)
     }
 
+    override fun observeAll(): Flow<List<TransactionEntity>> = flowOf(inserted.toList())
+
     override suspend fun applyBalanceDelta(walletId: Long, delta: Long) {
         balances[walletId] = (balances[walletId] ?: 0L) + delta
     }
@@ -181,6 +183,7 @@ private object StubWalletDao : WalletDao {
 
 private object StubCategoryDao : CategoryDao {
     override fun observeByType(type: String): Flow<List<CategoryEntity>> = flowOf(emptyList())
+    override fun observeAllActive(): Flow<List<CategoryEntity>> = flowOf(emptyList())
 }
 
 private object StubQuickPresetDao : QuickPresetDao {
